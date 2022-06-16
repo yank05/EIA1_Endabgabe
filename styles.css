@@ -4,20 +4,76 @@
     height: 844px;
     margin-left: auto;
     margin-right: auto;
-    background-color: lightgray;
+    background-color: black;
 }
 
-.apptitle {
-    position: relative;
+.appTitle {
     display: flex;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
+    width: max-content; 
+    height: max-content;
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    font-family: Tahoma, sans-serif;
-    font-size: 20px;
-    color: #287fbe;
-    gap: 5px;
-    background-color: black;
+}
 
+#appTitleLogo {
+    position: absolute; 
+    top: 110px; 
+    width: 200px;
+    height: 200px; 
+}
+
+#appTitleText1 {
+    position: absolute; 
+    top: 0px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #287fbe;
+    font-size: 50px;
+}
+
+#appTitleText2 {
+    position: relative; 
+    top: 290px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #2f96d1;
+    font-size: 20px;
+}
+
+#appTitleText3 {
+    position: absolute;  
+    top: 280px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: orange;
+    font-size: 80px;
+}
+
+.button {
+    position: absolute;
+    border-style: solid;
+    width: 200px;
+    border-width: 3px;
+    border-color: darkgrey;
+    border-radius: 7px;
+    padding: 15px 32px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    font-size: 20px;
+}
+.Stufe1 {
+    top: 500px;
+    background-color: green;
+}
+
+.Stufe2 {
+    top: 600px; 
+    background-color: orange
+}
+
+.Stufe3 {
+    top: 700px;
+    background-color: red;  
 }
