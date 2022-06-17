@@ -1,10 +1,13 @@
 #content {
+    display: block;
     position: relative;
     width: 390px;
     height: 844px;
     margin-left: auto;
     margin-right: auto;
-    background-color: black;
+    align-items: center;
+    text-align: center;
+    background-color: black; 
 }
 
 .appTitle {
@@ -12,6 +15,7 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    top: 0px; 
     width: max-content; 
     height: max-content;
     flex-direction: column;
@@ -35,7 +39,7 @@
 }
 
 #appTitleText2 {
-    position: relative; 
+    position: absolute;  
     top: 290px; 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #2f96d1;
@@ -46,7 +50,7 @@
     position: absolute;  
     top: 280px; 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: orange;
+    color: rgb(255, 184, 53);
     font-size: 80px;
 }
 
@@ -76,4 +80,51 @@
 .Stufe3 {
     top: 700px;
     background-color: red;  
+}
+
+.points {
+    display: block;
+    position: relative;
+    right: 0px;
+    top: 0px;
+    height: 50px;
+    top: 50px; 
+    background-color: white;
+}
+
+#translationGerman {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content; 
+    height: max-content;
+    text-align: center;
+    top: 100px; 
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(62, 158, 50);
+    border-radius: 7px;
+    padding: 7px 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    color: rgb(62, 158, 50);
+    background-color: black;
+}
+
+#translationHeader {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    position: relative;
+    font-size: 25px;
+    color: rgb(234, 234, 234);
+    top: 200px; 
+}
+
+#taskText {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    color: rgb(234, 234, 234);
+    top: 300px; 
 }
