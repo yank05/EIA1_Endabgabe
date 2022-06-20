@@ -42,7 +42,7 @@
     position: absolute;  
     top: 290px; 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #2f96d1;
+    color: #287fbe;
     font-size: 20px;
 }
 
@@ -99,25 +99,16 @@
     width: max-content; 
     height: max-content;
     text-align: center;
-    top: 100px; 
+    top: 150px; 
     border-style: solid;
     border-width: 3px;
     border-color: rgb(62, 158, 50);
     border-radius: 7px;
     padding: 7px 16px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     color: rgb(62, 158, 50);
     background-color: black;
-}
-
-#translationHeader {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    display: inline-block;
-    position: relative;
-    font-size: 25px;
-    color: rgb(234, 234, 234);
-    top: 200px; 
 }
 
 #taskText {
@@ -126,5 +117,9 @@
     position: relative;
     font-size: 20px;
     color: rgb(234, 234, 234);
-    top: 300px; 
+    top: 400px; 
+}
+
+.word1 {
+    
 }
