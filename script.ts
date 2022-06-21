@@ -75,24 +75,52 @@ function LoadLevels(): void {
     //Wort 2
     let maxWord2 = sentences[randomSentenceSelector].WordNumber; 
     let randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
+    //Wort 3
+    let maxWord3 = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
+    //Wort 4
+    let maxWord4 = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord4 = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord;
     //Variable mit Zufallszahl + passenden Text sodass der Speicherort im Objekt des jeweiligen Satzes gefunden wird
     let textWord1 = "word" + randomWord1; 
     let textWord2 = "word" + randomWord2;
+    let textWord3 = "word" + randomWord3;
+    let textWord4 = "word" + randomWord4; 
+    console.log(textWord1)
+    console.log(textWord2)
+    console.log(textWord3)
+
+    //Prüfen: Falls zwei Zahlen gleich sind, würde zwei mal das gleiche Wort erscheinen, sodass eine andere Zahl her muss
+    if (textWord1 == textWord2) {
+        let maxWord2 = sentences[randomSentenceSelector].WordNumber; 
+        let randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
+    }
+    else if (textWord1 || textWord2 == textWord3) {
+        let maxWord3 = sentences[randomSentenceSelector].WordNumber; 
+        let randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
+    }
+
+    else if (textWord1 || textWord2 || textWord3 == textWord4) {
+        let maxWord4 = sentences[randomSentenceSelector].WordNumber; 
+        let randomWord4 = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord;
+    }
+    else {
+            //Erstellung der spanischen Wörter
+        //Wort 1
+        let word1: HTMLElement = document.createElement("div");
+        word1.setAttribute("class", "word1");
+        word1.innerHTML = sentences[randomSentenceSelector].textWord1; 
+        document.getElementById("content").appendChild(translationGerman); 
+        console.log(textWord1); 
+        //Wort 2
+        let word2: HTMLElement = document.createElement("div");
+        word2.setAttribute("class", "word1");
+        word2.innerHTML = sentences[randomSentenceSelector].textWord2; 
+        document.getElementById("content").appendChild(translationGerman); 
+        console.log(textWord2); 
+    }
 
 
-    //Erstellung der spanischen Wörter
-    //Wort 1
-    let word1: HTMLElement = document.createElement("div");
-    word1.setAttribute("class", "word1");
-    word1.innerHTML = sentences[randomSentenceSelector].textWord1; 
-    document.getElementById("content").appendChild(translationGerman); 
-    console.log(textWord1); 
-    //Wort 2
-    let word2: HTMLElement = document.createElement("div");
-    word2.setAttribute("class", "word1");
-    word2.innerHTML = sentences[randomSentenceSelector].textWord2; 
-    document.getElementById("content").appendChild(translationGerman); 
-    console.log(textWord2); 
     
 
 
