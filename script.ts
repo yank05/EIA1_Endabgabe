@@ -2,7 +2,17 @@
 document.getElementById("b1").addEventListener("click", LoadLevels);
 
 //Alle Elemente der Startseite als Objekt gespeichert
-const MainPageInterface = {
+
+interface MainPage {
+    AppName: HTMLElement;
+    Logo: HTMLElement; 
+    Subclaim: HTMLElement; 
+    language: HTMLElement; 
+    button1: HTMLElement; 
+    button2: HTMLElement;
+    button3: HTMLElement; 
+}
+const MainPageObjects: MainPage = {
     AppName: document.getElementById("appTitleText1"),
     Logo: document.getElementById("appTitleLogo"),
     Subclaim: document.getElementById("appTitleText2"),
@@ -13,7 +23,19 @@ const MainPageInterface = {
 }; 
 
 //Deklaration der Sätze
-const sentences = []; 
+interface ArraySentences {
+    sentences: object; 
+}
+interface Sentences {
+    translation: string;
+    word1: string;
+    word2: string;
+    word3: string;
+    word4: string;
+    word5: string; 
+}
+
+const sentences= []; 
 sentences[0] = {
     translation: "Mir geht es gut", 
     word1: "yo", 
@@ -38,16 +60,15 @@ sentences[2] = {
     WordNumber: 4, 
 }; 
 
-
 //wechselt Interface
 function LoadLevels(): void {
     //Entfernung aller Startseitenanzeigen
-    MainPageInterface.Logo.remove(); 
-    MainPageInterface.Subclaim.remove(); 
-    MainPageInterface.language.remove(); 
-    MainPageInterface.button1.remove(); 
-    MainPageInterface.button2.remove(); 
-    MainPageInterface.button3.remove();
+    MainPageObjects.Logo.remove(); 
+    MainPageObjects.Subclaim.remove(); 
+    MainPageObjects.language.remove(); 
+    MainPageObjects.button1.remove(); 
+    MainPageObjects.button2.remove(); 
+    MainPageObjects.button3.remove();
 
     //Erstellung der Aufforderung
     let Text2 = document.createElement("h3"); 
@@ -56,10 +77,9 @@ function LoadLevels(): void {
     document.getElementById("content").appendChild(Text2); 
 
     //Zufallsgenerator welcher Satz kommt
-    let minSentence = 0;
-    let maxSentence = 2; 
-    let randomSentenceSelector = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
-    console.log(randomSentenceSelector); 
+    let minSentence: number = 0;
+    let maxSentence: number = 2; 
+    let randomSentenceSelector: number = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
 
     //Erstellung des Feldes mit der deutschen Übersetzung 
     let translationGerman: HTMLElement = document.createElement("div");
@@ -69,61 +89,40 @@ function LoadLevels(): void {
 
     //Zufallsgenerator wo welches Wort steht 
     // Wort 1
-    let minWord = 1;
-    let maxWord1 = sentences[randomSentenceSelector].WordNumber; 
-    let randomWord1 = Math.floor(Math.random() * (maxWord1 - minWord + 1)) + minWord;
+    let minWord: number = 1;
+    let maxWord1: number = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord1: number = Math.floor(Math.random() * (maxWord1 - minWord + 1)) + minWord;
     //Wort 2
-    let maxWord2 = sentences[randomSentenceSelector].WordNumber; 
-    let randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
+    let maxWord2: number = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord2: number = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
     //Wort 3
-    let maxWord3 = sentences[randomSentenceSelector].WordNumber; 
-    let randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
+    let maxWord3: number = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord3: number = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
     //Wort 4
-    let maxWord4 = sentences[randomSentenceSelector].WordNumber; 
-    let randomWord4 = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord;
-    //Variable mit Zufallszahl + passenden Text sodass der Speicherort im Objekt des jeweiligen Satzes gefunden wird
-    let textWord1 = "word" + randomWord1; 
-    let textWord2 = "word" + randomWord2;
-    let textWord3 = "word" + randomWord3;
-    let textWord4 = "word" + randomWord4; 
-    console.log(textWord1)
-    console.log(textWord2)
-    console.log(textWord3)
+    let maxWord4: number = sentences[randomSentenceSelector].WordNumber; 
+    let randomWord4: number = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord; 
 
-    //Prüfen: Falls zwei Zahlen gleich sind, würde zwei mal das gleiche Wort erscheinen, sodass eine andere Zahl her muss
-    if (textWord1 == textWord2) {
-        let maxWord2 = sentences[randomSentenceSelector].WordNumber; 
-        let randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
+      //Prüfen: Falls zwei Zahlen gleich sind, würde zwei mal das gleiche Wort erscheinen, sodass eine andere Zahl her muss
+    while (randomWord1 == randomWord2) {
+        randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
+        console.log("Test"); 
     }
-    else if (textWord1 || textWord2 == textWord3) {
-        let maxWord3 = sentences[randomSentenceSelector].WordNumber; 
-        let randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
+    while (randomWord1 == randomWord3 || randomWord2 == randomWord3) {
+        randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
+        console.log("Test")
     }
 
-    else if (textWord1 || textWord2 || textWord3 == textWord4) {
-        let maxWord4 = sentences[randomSentenceSelector].WordNumber; 
-        let randomWord4 = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord;
-    }
-    else {
-            //Erstellung der spanischen Wörter
-        //Wort 1
-        let word1: HTMLElement = document.createElement("div");
-        word1.setAttribute("class", "word1");
-        word1.innerHTML = sentences[randomSentenceSelector].textWord1; 
-        document.getElementById("content").appendChild(translationGerman); 
-        console.log(textWord1); 
-        //Wort 2
-        let word2: HTMLElement = document.createElement("div");
-        word2.setAttribute("class", "word1");
-        word2.innerHTML = sentences[randomSentenceSelector].textWord2; 
-        document.getElementById("content").appendChild(translationGerman); 
-        console.log(textWord2); 
-    }
-
+    let textWord1: string = "word" + randomWord1; 
+    let textWord2: string = "word" + randomWord2;
+    let textWord3: string = "word" + randomWord3; 
+    let textWord4: string = "word" + randomWord4;
+   
+    console.log(textWord1); 
+    console.log(textWord2);
+    console.log(textWord3);
+    console.log(textWord4);
 
     
+}; 
 
-
-
-}
-
+    
