@@ -12,26 +12,15 @@ const MainPageObjects = {
 const sentences = [];
 sentences[0] = {
     translation: "Mir geht es gut",
-    word1: "yo",
-    word2: "soy",
-    word3: "así",
-    WordNumber: 3,
+    words: ["yo", "soy", "asi"],
 };
 sentences[1] = {
     translation: "Es ist sehr warm heute",
-    word1: "hace",
-    word2: "mucho",
-    word3: "calor",
-    word4: "hoy",
-    WordNumber: 4,
+    words: ["hace", "mucho", "calor", "hoy"]
 };
 sentences[2] = {
     translation: "Die Rechnung bitte",
-    word1: "La",
-    word2: "cuenta,",
-    word3: "por",
-    word4: "favor",
-    WordNumber: 4,
+    words: ["La", "cuenta", "por", "favor"]
 };
 //wechselt Interface
 function LoadLevels() {
@@ -42,12 +31,12 @@ function LoadLevels() {
     MainPageObjects.button1.remove();
     MainPageObjects.button2.remove();
     MainPageObjects.button3.remove();
-    //Erstellung der Aufforderung
+    //Erstellung der Aufforderung, was zu tun ist
     let Text2 = document.createElement("h3");
     Text2.setAttribute("id", "taskText"),
         Text2.innerHTML = "Wähle die übersetzten Wörter in der richtigen Reihenfolge";
     document.getElementById("content").appendChild(Text2);
-    //Zufallsgenerator welcher Satz kommt
+    //Zufallsgenerator welcher Satz als erstes erscheinen wird
     let minSentence = 0;
     let maxSentence = 2;
     let randomSentenceSelector = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
@@ -56,37 +45,22 @@ function LoadLevels() {
     translationGerman.setAttribute("id", "translationGerman");
     translationGerman.innerHTML = sentences[randomSentenceSelector].translation;
     document.getElementById("content").appendChild(translationGerman);
-    //Zufallsgenerator wo welches Wort steht 
-    // Wort 1
-    let minWord = 1;
-    let maxWord1 = sentences[randomSentenceSelector].WordNumber;
-    let randomWord1 = Math.floor(Math.random() * (maxWord1 - minWord + 1)) + minWord;
-    //Wort 2
-    let maxWord2 = sentences[randomSentenceSelector].WordNumber;
-    let randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
-    //Wort 3
-    let maxWord3 = sentences[randomSentenceSelector].WordNumber;
-    let randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
-    //Wort 4
-    let maxWord4 = sentences[randomSentenceSelector].WordNumber;
-    let randomWord4 = Math.floor(Math.random() * (maxWord4 - minWord + 1)) + minWord;
-    //Prüfen: Falls zwei Zahlen gleich sind, würde zwei mal das gleiche Wort erscheinen, sodass eine andere Zahl her muss
-    while (randomWord1 == randomWord2) {
-        randomWord2 = Math.floor(Math.random() * (maxWord2 - minWord + 1)) + minWord;
-        console.log("Test");
+    //Erstellung der Buttons
+    for (let index = 0; index <= sentences[randomSentenceSelector].words.length + 1; index++) {
+        //zufälliges Wort aus dem Array "words" des jeweiligen Satzes
+        let minWords = 0;
+        let maxWords = sentences[randomSentenceSelector].words.length - 1;
+        let WordSelector = Math.floor(Math.random() * (maxWords - minWords + 1)) + minWords;
+        console.log(WordSelector);
+        //Erstellung des Elements mit dem Wort
+        let words = document.createElement("button");
+        words.setAttribute("type", "button");
+        words.setAttribute("id", "word" + index);
+        words.innerHTML = sentences[randomSentenceSelector].words[WordSelector];
+        console.log(sentences[randomSentenceSelector].words[WordSelector]);
+        console.log(words.innerHTML);
+        sentences[randomSentenceSelector].words.splice(WordSelector, 1);
     }
-    while (randomWord1 == randomWord3 || randomWord2 == randomWord3) {
-        randomWord3 = Math.floor(Math.random() * (maxWord3 - minWord + 1)) + minWord;
-        console.log("Test");
-    }
-    let textWord1 = "word" + randomWord1;
-    let textWord2 = "word" + randomWord2;
-    let textWord3 = "word" + randomWord3;
-    let textWord4 = "word" + randomWord4;
-    console.log(textWord1);
-    console.log(textWord2);
-    console.log(textWord3);
-    console.log(textWord4);
 }
 ;
 //# sourceMappingURL=script.js.map
