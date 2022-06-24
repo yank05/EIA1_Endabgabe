@@ -98,6 +98,7 @@
     margin-right: auto;
     width: max-content; 
     height: max-content;
+    flex-wrap: wrap;
     text-align: center;
     top: 150px; 
     border-style: solid;
@@ -117,9 +118,35 @@
     position: relative;
     font-size: 20px;
     color: rgb(234, 234, 234);
-    top: 400px; 
+    top: 350px; 
 }
 
-#word0 {
-    background-color: #287fbe;
+#flexwords {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 350px; 
+    width: max-content; 
+    height: max-content;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+#word0, #word1, #word2, #word3, #word4, #word5, #word6, #word7, #word8 {
+    position: relative;
+    border-style: solid;
+    width: 130px;
+    border-width: 3px;
+    border-color: darkgrey;
+    border-radius: 7px;
+    padding: 15px 32px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    font-size: 20px;
+    color: #287fbe;
+    background-color: black;
 }

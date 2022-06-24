@@ -71,24 +71,33 @@ function LoadLevels(): void {
     translationGerman.setAttribute("id", "translationGerman");
     translationGerman.innerHTML = sentences[randomSentenceSelector].translation; 
     document.getElementById("content").appendChild(translationGerman); 
+    //Erstellung der Flexbox mit den Wörtern 
+    let FlexWords: HTMLElement = document.createElement("div");
+    FlexWords.setAttribute("id", "flexwords");
+    document.getElementById("content").appendChild(FlexWords); 
 
+    //initiale Festlegung der Variable, wie lange die for-Schleife laufen soll, weil sich die Array.length in der for-Schleife
+    //ändert und sie sonst zu früh enden würde
+    var initialArrayLenght: number = sentences[randomSentenceSelector].words.length
     //Erstellung der Buttons
-    for (let index = 0; index <= sentences[randomSentenceSelector].words.length + 1; index++) {
-        //zufälliges Wort aus dem Array "words" des jeweiligen Satzes
+    for (let index = 0; index < initialArrayLenght; index++) {
+        //zufälliges Wort aus dem Array "words" des jeweiligen Satzes. Die Stelle des Arrays, die der Zufallsgenerator wählt,
+        //wird als Button erstellt und anschließend aua dem Array gelöscht, sodass der Zufallsgenerator dieses Wort nicht mehr 
+        //auswählt, sondern eines der restlichen existierenden Wörter
         let minWords: number = 0;
-        let maxWords: number = sentences[randomSentenceSelector].words.length - 1; 
+        let maxWords: number = (sentences[randomSentenceSelector].words.length - 1); 
         let WordSelector: number = Math.floor(Math.random() * (maxWords - minWords + 1)) + minWords;
-        console.log(WordSelector); 
-        //Erstellung des Elements mit dem Wort
-        let words: HTMLElement = document.createElement("button");
+        //Element wird mit dem Wort erstellt
+        let words: HTMLElement = document.createElement("button"); 
         words.setAttribute("type", "button"); 
         words.setAttribute("id", "word" + index); 
-        words.innerHTML = sentences[randomSentenceSelector].words[WordSelector];
-        console.log(sentences[randomSentenceSelector].words[WordSelector]); 
-        console.log(words.innerHTML); 
+        words.innerHTML = sentences[randomSentenceSelector].words[WordSelector]; 
+        document.getElementById("flexwords").appendChild(words); 
+       
         sentences[randomSentenceSelector].words.splice(WordSelector, 1); 
     }
     
+
     
 }; 
 
