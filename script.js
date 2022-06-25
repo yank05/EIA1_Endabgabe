@@ -1,5 +1,7 @@
 //Funktion für Laden der Screens bei jeweiliger Auswahl der Stufe
 document.getElementById("b1").addEventListener("click", LoadLevels);
+document.getElementById("b2").addEventListener("click", LoadLevels);
+document.getElementById("b3").addEventListener("click", LoadLevels);
 const MainPageObjects = {
     AppName: document.getElementById("appTitleText1"),
     Logo: document.getElementById("appTitleLogo"),
@@ -31,11 +33,6 @@ function LoadLevels() {
     MainPageObjects.button1.remove();
     MainPageObjects.button2.remove();
     MainPageObjects.button3.remove();
-    //Erstellung der Aufforderung, was zu tun ist
-    let Text2 = document.createElement("h3");
-    Text2.setAttribute("id", "taskText"),
-        Text2.innerHTML = "Wähle die übersetzten Wörter in der richtigen Reihenfolge";
-    document.getElementById("content").appendChild(Text2);
     //Zufallsgenerator welcher Satz erscheinen wird
     let minSentence = 0;
     let maxSentence = (sentences.length - 1);
@@ -46,12 +43,20 @@ function LoadLevels() {
     translationGerman.setAttribute("id", "translationGerman");
     translationGerman.innerHTML = sentences[randomSentenceSelector].translation;
     document.getElementById("content").appendChild(translationGerman);
+    //Erstellung Flexbox, in welche die spanischen Wörter eingefügt werden
+    let FlexSpanish = document.createElement("div");
+    FlexSpanish.setAttribute("id", "flexspanish");
+    document.getElementById("content").appendChild(FlexSpanish);
+    //Erstellung der Aufforderung, was zu tun ist
+    let Text2 = document.createElement("h3");
+    Text2.setAttribute("id", "taskText"),
+        Text2.innerHTML = "Wähle die übersetzten Wörter in der richtigen Reihenfolge";
+    document.getElementById("content").appendChild(Text2);
     //Erstellung der Flexbox mit den Wörtern 
     let FlexWords = document.createElement("div");
     FlexWords.setAttribute("id", "flexwords");
     document.getElementById("content").appendChild(FlexWords);
-    //initiale Festlegung der Variable, wie lange die for-Schleife laufen soll, weil sich die Array.length in der for-Schleife
-    //ändert und sie sonst zu früh enden würde + Kopie des Arrays mit den Wörtern, damit diese nicht wirklich gelöscht werden
+    //Kopie des Arrays mit den Wörtern, damit diese nicht wirklich gelöscht werden
     var theArray = sentences[randomSentenceSelector].words.slice();
     for (let index = 0; index < sentences[randomSentenceSelector].words.length; index++) {
         //zufälliges Wort aus dem Array "words" des jeweiligen Satzes. Die Stelle des Arrays, die der Zufallsgenerator wählt,

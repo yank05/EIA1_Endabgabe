@@ -100,7 +100,7 @@
     height: max-content;
     flex-wrap: wrap;
     text-align: center;
-    top: 150px; 
+    top: 200px; 
     border-style: solid;
     border-width: 3px;
     border-color: rgb(62, 158, 50);
@@ -111,6 +111,26 @@
     color: rgb(62, 158, 50);
     background-color: black;
 }
+#flexspanish {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px; 
+    height: max-content;
+    flex-wrap: wrap;
+    text-align: center;
+    top: 220px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(62, 158, 50);
+    border-radius: 7px;
+    padding: 7px 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: rgb(62, 158, 50);
+    opacity: 0;
+}
 
 #taskText {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -118,7 +138,7 @@
     position: relative;
     font-size: 20px;
     color: rgb(234, 234, 234);
-    top: 350px; 
+    top: 300px; 
 }
 
 #flexwords {
@@ -126,7 +146,7 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    top: 350px; 
+    top: 300px; 
     width: 300px; 
     height: 350px; 
     flex-direction: column;
@@ -136,6 +156,8 @@
     justify-content: center;
     gap: 5px;
 }
+
+
 
 #word0, #word1, #word2, #word3, #word4, #word5, #word6, #word7, #word8 {
     position: relative;
