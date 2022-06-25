@@ -82,14 +82,14 @@
     background-color: red;  
 }
 
-.points {
-    display: block;
-    position: relative;
+#points {
+    display: inline;
+    position: absolute;
     right: 0px;
-    top: 0px;
-    height: 50px;
-    top: 50px; 
-    background-color: white;
+    bottom: 0px;
+    height: 40px;
+    width: 80px; 
+    background-color: black;
 }
 
 #translationGerman {
