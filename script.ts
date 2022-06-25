@@ -42,7 +42,7 @@ sentences[1] = {
 }; 
 sentences[2] = {
     translation: "Die Rechnung bitte", 
-    words: ["La", "cuenta", "por", "favor"]
+    words: ["La", "cuenta", "por", "favor", "1", "2", "3", "4"]
 }; 
 
 //wechselt Interface
@@ -61,9 +61,10 @@ function LoadLevels(): void {
     Text2.innerHTML = "Wähle die übersetzten Wörter in der richtigen Reihenfolge";
     document.getElementById("content").appendChild(Text2); 
 
-    //Zufallsgenerator welcher Satz als erstes erscheinen wird
+    //Zufallsgenerator welcher Satz erscheinen wird
     let minSentence: number = 0;
-    let maxSentence: number = 2; 
+    let maxSentence: number = (sentences.length -1);
+    console.log(maxSentence);  
     let randomSentenceSelector: number = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
 
     //Erstellung des Feldes mit der deutschen Übersetzung 
@@ -71,34 +72,36 @@ function LoadLevels(): void {
     translationGerman.setAttribute("id", "translationGerman");
     translationGerman.innerHTML = sentences[randomSentenceSelector].translation; 
     document.getElementById("content").appendChild(translationGerman); 
+    
     //Erstellung der Flexbox mit den Wörtern 
     let FlexWords: HTMLElement = document.createElement("div");
     FlexWords.setAttribute("id", "flexwords");
     document.getElementById("content").appendChild(FlexWords); 
 
     //initiale Festlegung der Variable, wie lange die for-Schleife laufen soll, weil sich die Array.length in der for-Schleife
-    //ändert und sie sonst zu früh enden würde
-    var initialArrayLenght: number = sentences[randomSentenceSelector].words.length
-    //Erstellung der Buttons
-    for (let index = 0; index < initialArrayLenght; index++) {
+    //ändert und sie sonst zu früh enden würde + Kopie des Arrays mit den Wörtern, damit diese nicht wirklich gelöscht werden
+    var theArray = sentences[randomSentenceSelector].words.slice(); 
+
+    for (let index = 0; index < sentences[randomSentenceSelector].words.length; index++) {
         //zufälliges Wort aus dem Array "words" des jeweiligen Satzes. Die Stelle des Arrays, die der Zufallsgenerator wählt,
-        //wird als Button erstellt und anschließend aua dem Array gelöscht, sodass der Zufallsgenerator dieses Wort nicht mehr 
+        //wird als Button erstellt und anschließend aus dem Array gelöscht, sodass der Zufallsgenerator dieses Wort nicht mehr 
         //auswählt, sondern eines der restlichen existierenden Wörter
         let minWords: number = 0;
-        let maxWords: number = (sentences[randomSentenceSelector].words.length - 1); 
+        let maxWords: number = (theArray.length - 1); 
         let WordSelector: number = Math.floor(Math.random() * (maxWords - minWords + 1)) + minWords;
-        //Element wird mit dem Wort erstellt
+        //Element wird mit dem Wort erstellt und die Flexbox eingesetzt
         let words: HTMLElement = document.createElement("button"); 
         words.setAttribute("type", "button"); 
         words.setAttribute("id", "word" + index); 
-        words.innerHTML = sentences[randomSentenceSelector].words[WordSelector]; 
+        words.innerHTML = theArray[WordSelector]; 
         document.getElementById("flexwords").appendChild(words); 
-       
-        sentences[randomSentenceSelector].words.splice(WordSelector, 1); 
+        //Wort wird aus dem Array gelöscht
+        theArray.splice(WordSelector, 1); 
     }
     
 
-    
+    //Löschung des benutzten Satzes aus dem Array, dass er nicht nochmal kommt
+    sentences.splice(randomSentenceSelector, 1);    
 }; 
 
     
