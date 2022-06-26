@@ -85,11 +85,16 @@
 #points {
     display: inline;
     position: absolute;
-    right: 0px;
+    right: 5px;
     bottom: 0px;
-    height: 40px;
-    width: 80px; 
+    height: 30px;
+    width: max-content; 
     background-color: black;
+    color: #287fbe;
+    text-align: center;
+
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
 }
 
 #translationGerman {
@@ -98,9 +103,10 @@
     margin-right: auto;
     width: max-content; 
     height: max-content;
+    max-width: 300px;
     flex-wrap: wrap;
     text-align: center;
-    top: 200px; 
+    top: 150px; 
     border-style: solid;
     border-width: 3px;
     border-color: rgb(62, 158, 50);
@@ -116,11 +122,15 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 300px; 
+    width: max-content;
+    max-width: 300px; 
     height: max-content;
     flex-wrap: wrap;
     text-align: center;
-    top: 220px;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    top: 160px;
     border-style: solid;
     border-width: 3px;
     border-color: rgb(62, 158, 50);
@@ -138,7 +148,7 @@
     position: relative;
     font-size: 20px;
     color: rgb(234, 234, 234);
-    top: 300px; 
+    top: 180px; 
 }
 
 #flexwords {
@@ -146,7 +156,7 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    top: 300px; 
+    top: 200px; 
     width: 300px; 
     height: 350px; 
     flex-direction: column;
@@ -154,12 +164,32 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    gap: 5px;
+    font-size: 30px;
+    color: rgb(62, 158, 50);
+    gap: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
 
 #word0, #word1, #word2, #word3, #word4, #word5, #word6, #word7, #word8 {
+    position: relative;
+    border-style: solid;
+    width: max-content;
+    min-width: 150px;
+    border-width: 3px;
+    border-color: darkgrey;
+    border-radius: 7px;
+    padding: 15px 32px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    font-size: 20px;
+    color: #287fbe;
+    background-color: black;
+}
+
+#goonbutton {
     position: relative;
     border-style: solid;
     width: 130px;
