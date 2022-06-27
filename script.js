@@ -65,8 +65,8 @@ sentences[12] = {
     words: ["mañana", "tengo", "tiempo", "para", "ti"]
 };
 sentences[13] = {
-    translation: "Morgen habe ich Zeit für dich",
-    words: ["Uf,", "yo", "tampoco", "lo", "sé", "en", "este", "momento."]
+    translation: "Oh, das weiß ich gerade leider auch nicht",
+    words: ["Oh,", "yo", "tampoco", "lo", "sé", "ahora"]
 };
 sentences[14] = {
     translation: "Spanisch ist so eine schöne Sorache",
@@ -81,6 +81,7 @@ var randomSentenceSelector;
 document.getElementById("b1").addEventListener("click", Level1);
 document.getElementById("b2").addEventListener("click", Level2);
 document.getElementById("b3").addEventListener("click", Level3);
+//Variable indexLevel gibt an, wie oft die Funktionen alle ausgeführt werden, bis die Stufe endet
 var indexLevel;
 function Level1() {
     indexLevel = 5;
@@ -96,7 +97,6 @@ function Level3() {
 }
 //wechselt Seite
 function LoadLevels() {
-    indexLevel--;
     //Entfernung aller Startseitenanzeigen
     mainPageObjects.Logo.remove();
     mainPageObjects.Subclaim.remove();
@@ -126,6 +126,10 @@ function LoadLevels() {
     let flexWords = document.createElement("div");
     flexWords.setAttribute("id", "flexwords");
     document.getElementById("content").appendChild(flexWords);
+    let cheater = document.createElement("div");
+    cheater.setAttribute("id", "cheater");
+    document.getElementById("content").appendChild(cheater);
+    cheater.addEventListener("click", cheat);
     //Punkteanzeige
     pointViewer.innerHTML = "Punkte: " + points;
     //Kopie des Arrays mit den Wörtern, damit diese nicht wirklich gelöscht werden
@@ -259,28 +263,62 @@ function goOn() {
         box.innerHTML = "";
         //Click-Counter wieder auf 0
         clickCounter = 0;
+        console.log(indexLevel);
         //Erstellung der Wörter mit for-Schleife nach dem gleichen Schema wie oben
         var theArray = sentences[randomSentenceSelector].words.slice();
         for (let index = 0; index < sentences[randomSentenceSelector].words.length; index++) {
             let minWords = 0;
             let maxWords = (theArray.length - 1);
             let wordSelector = Math.floor(Math.random() * (maxWords - minWords + 1)) + minWords;
-            //Element wird mit dem Wort erstellt und die Flexbox eingesetzt
             let words = document.createElement("button");
             words.setAttribute("type", "button");
             words.setAttribute("id", "word" + index);
             words.innerHTML = theArray[wordSelector];
             document.getElementById("flexwords").appendChild(words);
-            //Wort wird aus dem Array gelöscht
             theArray.splice(wordSelector, 1);
-            //Event bei Klick auf das Wort wird hinzugefügt
             let eventer = document.getElementById("word" + index);
             eventer.addEventListener("click", wordClicker);
         }
     }
     else {
-        console.log("läuft");
+        //Seite clearen
+        let pointsCorner = document.getElementById("points");
+        let translationGerman = document.getElementById("translationGerman");
+        let flexSpanish = document.getElementById("flexspanish");
+        let flexWords = document.getElementById("flexwords");
+        let taskText = document.getElementById("taskText");
+        pointsCorner.remove();
+        translationGerman.remove();
+        flexSpanish.remove();
+        flexWords.remove();
+        taskText.remove();
+        let textField = document.createElement("div");
+        textField.setAttribute("id", "finalText");
+        document.getElementById("content").appendChild(textField);
+        let headText1 = document.createElement("h2");
+        headText1.setAttribute("id", "headText1");
+        headText1.innerHTML = "Geschafft!";
+        document.getElementById("finalText").appendChild(headText1);
+        let headText2 = document.createElement("h3");
+        headText2.setAttribute("id", "headText2");
+        headText2.innerHTML = "Du hast " + points + " Punkte erreicht";
+        document.getElementById("finalText").appendChild(headText2);
+        let headText3 = document.createElement("h3");
+        headText3.setAttribute("id", "headText3");
+        headText3.innerHTML = "Da geht noch was, oder?";
+        document.getElementById("finalText").appendChild(headText3);
+        let againButton = document.createElement("button");
+        againButton.setAttribute("type", "button");
+        againButton.setAttribute("id", "againButton");
+        againButton.innerHTML = "Zur Startseite";
+        againButton.addEventListener("click", reload);
+        document.getElementById("finalText").appendChild(againButton);
     }
-    //
+}
+function reload() {
+    location.reload();
+}
+function cheat() {
+    indexLevel = 1;
 }
 //# sourceMappingURL=script.js.map

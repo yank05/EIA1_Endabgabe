@@ -204,3 +204,63 @@
     color: #287fbe;
     background-color: black;
 }
+
+#finalText {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 200px; 
+    width: 300px; 
+    height: max-content; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#headText1 {
+    color: rgb(62, 158, 50);
+}
+
+#headText2 {
+    font-size: 25px;
+    color: rgb(62, 158, 50);
+}
+
+#headText3 {
+    position: relative;
+    top: 130px; 
+    font-size: 25px;
+    color: #287fbe;
+}
+
+#againButton {
+    position: relative;
+    border-style: solid;
+    width: max-content;
+    border-width: 3px;
+    border-color: darkgrey;
+    border-radius: 7px;
+    padding: 15px 32px;
+    top: 150px; 
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+
+}
+
+#cheater {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 30px; 
+    background-color: green;
+}
