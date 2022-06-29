@@ -18,10 +18,6 @@ const mainPageObjects: MainPage = {
     button3: document.getElementById("b3"),
 }; 
 
-//Deklaration der Sätze
-interface ArraySentences {
-    sentences: object; 
-}
 interface Sentences {
     translation: string;
     words: string;
