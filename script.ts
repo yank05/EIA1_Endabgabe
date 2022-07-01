@@ -21,7 +21,7 @@ const mainPageObjects: MainPage = {
 const sentences = []
 sentences[0] = {
     translation: "Mir geht es gut", 
-    words: ["yo", "soy", "asi"], 
+    words: ["yo", "soy", "asi"] 
 };
 sentences[1] = {
     translation: "Es ist sehr warm heute", 
