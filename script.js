@@ -69,24 +69,24 @@ sentences[14] = {
     translation: "Oh, das weiß ich gerade leider auch nicht",
     words: ["Oh,", "yo", "tampoco", "lo", "sé", "ahora"]
 };
-//Variable für Punkte
+//globale Variable für Punkte
 var points = 0;
 var pointViewer = document.getElementById("points");
-//Variable für zufälligen Satz
+//globale Variable für zufälligen Satz
 var randomSentenceSelector;
 //EventListener für Laden der Screens bei jeweiliger Auswahl der Stufe
 document.getElementById("b1").addEventListener("click", Level1);
 document.getElementById("b2").addEventListener("click", Level2);
 document.getElementById("b3").addEventListener("click", Level3);
-//Variable indexLevel gibt an, wie viele Sätze erscheinen werden
+//globale Variable indexLevel gibt an, wie viele Sätze erscheinen werden
 var indexLevel;
-//Variable barCounter für die erste Zahl der Fortschrittsleiste wie viele Sätze schon geschafft sind
+//globale Variable barCounter für die erste Zahl der Fortschrittsleiste wie viele Sätze schon geschafft sind
 var barCounter;
 var barText = document.createElement("p");
-// Variable bar für die Fortschrittsleiste
+//globale Variable bar für die Fortschrittsleiste
 var bar = document.createElement("div");
 var innerBar = document.createElement("div");
-// Variable barTotal für die zweite Zahl in der Fortschrittsleiste wie viele Sätze es insgesamt sind
+//globale Variable barTotal für die zweite Zahl in der Fortschrittsleiste wie viele Sätze es insgesamt sind
 var barTotal;
 function Level1() {
     indexLevel = 5;

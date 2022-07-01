@@ -80,11 +80,11 @@ sentences [14] = {
     words: ["Oh,", "yo", "tampoco", "lo", "sé", "ahora"]
 }; 
 
-//Variable für Punkte
+//globale Variable für Punkte
 var points: number = 0; 
 var pointViewer: HTMLElement = document.getElementById("points");
 
-//Variable für zufälligen Satz
+//globale Variable für zufälligen Satz
 var randomSentenceSelector: number; 
 
 //EventListener für Laden der Screens bei jeweiliger Auswahl der Stufe
@@ -93,15 +93,15 @@ document.getElementById("b2").addEventListener("click", Level2);
 document.getElementById("b3").addEventListener("click", Level3);
 
 
-//Variable indexLevel gibt an, wie viele Sätze erscheinen werden
+//globale Variable indexLevel gibt an, wie viele Sätze erscheinen werden
 var indexLevel: number;  
-//Variable barCounter für die erste Zahl der Fortschrittsleiste wie viele Sätze schon geschafft sind
+//globale Variable barCounter für die erste Zahl der Fortschrittsleiste wie viele Sätze schon geschafft sind
 var barCounter: number;
 var barText: HTMLElement = document.createElement("p");
-// Variable bar für die Fortschrittsleiste
+//globale Variable bar für die Fortschrittsleiste
 var bar: HTMLElement = document.createElement("div");
 var innerBar: HTMLElement = document.createElement("div"); 
-// Variable barTotal für die zweite Zahl in der Fortschrittsleiste wie viele Sätze es insgesamt sind
+//globale Variable barTotal für die zweite Zahl in der Fortschrittsleiste wie viele Sätze es insgesamt sind
 var barTotal: number; 
 
 function Level1(): void {
@@ -202,7 +202,7 @@ function LoadLevels(): void {
     }
 }
 
- //Click-Counter zählt, um den wievielten richtigen Klick es sich handelt, um dann zu ermitteln ob das Wort richtig ist
+//Click-Counter zählt, um den wievielten richtigen Klick es sich handelt, um dann zu ermitteln ob das Wort richtig ist
 var clickCounter: number = 0; 
 function wordClicker(): void {
     clickCounter++;
