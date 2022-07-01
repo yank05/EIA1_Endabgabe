@@ -255,12 +255,45 @@
 
 }
 
-#cheater {
-    display: inline;
+#bar {
+    display: flex;
     position: absolute;
+    justify-content: center;
+    align-items: center;
     left: 0px;
     bottom: 0px;
     height: 30px;
-    width: 30px; 
-    background-color: green;
+    width: 150px; 
+    border-style: solid;
+    border-width: 3px;
+    border-color: #287fbe;
+    border-radius: 7px;
+}
+
+#innerBar {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    max-width: 150px; 
+    background-color: orange;
+}
+
+#bartext {
+    position: relative;
+    color: #287fbe;
+    bottom: 0px;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}
+
+footer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    color: darkgray;
+    opacity: 0,9;
+    display: inline;
+    text-align: center;
 }

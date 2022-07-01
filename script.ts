@@ -17,12 +17,7 @@ const mainPageObjects: MainPage = {
     button2: document.getElementById("b2"),
     button3: document.getElementById("b3"),
 }; 
-
-interface Sentences {
-    translation: string;
-    words: string;
-}
-
+// Alle Sätze sind in einem Array, in dieses wird jeder Satz als Objekt hineingeschoben 
 const sentences = []
 sentences[0] = {
     translation: "Mir geht es gut", 
@@ -56,67 +51,74 @@ sentences [7] = {
     translation: "Ich sprech ein bisschen spanisch", 
     words: ["Hablo", "un", "poco", "de", "español"]
 };
-sentences [7] = {
+sentences [8] = {
     translation: "ORIGAMI ist toll, um spanisch zu lernen", 
     words: ["ORIGAMI", "es", "genial", "para", "aprender", "español"]
 };
-sentences [8] = {
+sentences [9] = {
     translation: "Ich möchte auch etwas zu trinken", 
     words: ["yo", "tambien", "quiero", "algo", "de", "beber"]
 }; 
-sentences [9] = {
+sentences [10] = {
     translation: "Können sie das wiederholen, bitte?", 
     words: ["¿Podrías", "repetir", "eso", "por", "favor?"]
 }; 
-sentences [10] = {
+sentences [11] = {
     translation: "Ich komme aus Deutschland", 
     words: ["vengo", "de", "Alemania"]
 }; 
-sentences [11] = {
+sentences [12] = {
     translation: "Unser Flug geht um 15:45 Uhr", 
     words: ["Nuestro", "vuelo", "sale", "a", "las", "15:45."]
 }; 
-sentences [12] = {
+sentences [13] = {
     translation: "Morgen habe ich Zeit für dich", 
     words: ["mañana", "tengo", "tiempo", "para", "ti"]
 }; 
-sentences [13] = {
+sentences [14] = {
     translation: "Oh, das weiß ich gerade leider auch nicht", 
     words: ["Oh,", "yo", "tampoco", "lo", "sé", "ahora"]
 }; 
-sentences [14] = {
-    translation: "Spanisch ist so eine schöne Sorache", 
-    words: ["el", "español", "es", "un", "idioma", "tan", "hermoso"]
-}; 
-
-
 
 //Variable für Punkte
 var points: number = 0; 
 var pointViewer: HTMLElement = document.getElementById("points");
+
 //Variable für zufälligen Satz
 var randomSentenceSelector: number; 
 
-//Funktion für Laden der Screens bei jeweiliger Auswahl der Stufe
+//EventListener für Laden der Screens bei jeweiliger Auswahl der Stufe
 document.getElementById("b1").addEventListener("click", Level1);
 document.getElementById("b2").addEventListener("click", Level2);
 document.getElementById("b3").addEventListener("click", Level3);
 
 
-//Variable indexLevel gibt an, wie oft die Funktionen alle ausgeführt werden, bis die Stufe endet
+//Variable indexLevel gibt an, wie viele Sätze erscheinen werden
 var indexLevel: number;  
+//Variable barCounter für die erste Zahl der Fortschrittsleiste wie viele Sätze schon geschafft sind
+var barCounter: number;
+var barText: HTMLElement = document.createElement("p");
+// Variable bar für die Fortschrittsleiste
+var bar: HTMLElement = document.createElement("div");
+var innerBar: HTMLElement = document.createElement("div"); 
+// Variable barTotal für die zweite Zahl in der Fortschrittsleiste wie viele Sätze es insgesamt sind
+var barTotal: number; 
+
 function Level1(): void {
     indexLevel = 5; 
+    barTotal = 5;
     LoadLevels(); 
 }
 
 function Level2(): void {
-    indexLevel = 10; 
+    indexLevel = 10;
+    barTotal = 10;  
     LoadLevels(); 
 }
 
 function Level3(): void {
     indexLevel = 15; 
+    barTotal = 15; 
     LoadLevels();
 }
 
@@ -130,12 +132,12 @@ function LoadLevels(): void {
     mainPageObjects.button2.remove(); 
     mainPageObjects.button3.remove();
 
-    //Zufallsgenerator welcher Satz erscheinen wird
+    //Zufallsgenerator welcher Satz erscheinen wird, wählt irgendeine Nummer zwischen 0 und 14 aus
     let minSentence: number = 0;
-    let maxSentence: number = (sentences.length -1);
+    let maxSentence: number = (sentences.length - 1);
     randomSentenceSelector = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
 
-    //Erstellung des Feldes mit der deutschen Übersetzung 
+    //Erstellung des Feldes mit der deutschen Übersetzung des oben ausgewählten Satzes
     let translationGerman: HTMLElement = document.createElement("div");
     translationGerman.setAttribute("id", "translationGerman");
     translationGerman.innerHTML = sentences[randomSentenceSelector].translation; 
@@ -156,11 +158,22 @@ function LoadLevels(): void {
     let flexWords: HTMLElement = document.createElement("div");
     flexWords.setAttribute("id", "flexwords");
     document.getElementById("content").appendChild(flexWords); 
+    
+    //Fortschrittsanzeige
+    bar.setAttribute("id", "bar");
+    document.getElementById("content").appendChild(bar); 
 
-    let cheater: HTMLElement = document.createElement("div");
-    cheater.setAttribute("id", "cheater");
-    document.getElementById("content").appendChild(cheater); 
-    cheater.addEventListener("click", cheat);
+    innerBar.setAttribute("id", "innerBar");
+    document.getElementById("bar").appendChild(innerBar); 
+
+    //Text Fortschrittsanzeige
+    barCounter = 1;
+    barText.setAttribute("id", "bartext"); 
+    document.getElementById("bar").appendChild(barText); 
+    barText.innerHTML = barCounter + " von " + barTotal; 
+    let barCalculator: number = ( barCounter / barTotal) * 100; 
+    innerBar.setAttribute("style", "width:" + barCalculator + "%"); 
+    
 
     //Punkteanzeige
     pointViewer.innerHTML = "Punkte: " + points;
@@ -187,17 +200,18 @@ function LoadLevels(): void {
         let eventer: HTMLElement = document.getElementById("word" + index);
         eventer.addEventListener("click", wordClicker); 
     }
-}; 
+}
 
+ //Click-Counter zählt, um den wievielten richtigen Klick es sich handelt, um dann zu ermitteln ob das Wort richtig ist
 var clickCounter: number = 0; 
 function wordClicker(): void {
-    //Click-Counter zählt, um den wievielten Klick es sich handelt, um dann zu ermitteln ob das Wort richtig ist
     clickCounter++;
     //Variable für die Div, in welches die Übersetzung soll
     let box: HTMLElement = document.getElementById("flexspanish");
-    //Variable, für die Div, in welche die "Gut gemacht"-Meldung kommen soll
+    //Variable für die Div, in welche die "Gut gemacht"-Meldung kommen soll
     let box2: HTMLElement = document.getElementById("flexwords");
-    //handelt es sich um den ersten Klick, muss inner.HTML des Buttons im Array an 0. Stelle stehen, beim 2. Klick an 1. Stelle usw.
+    //handelt es sich um den ersten Klick, muss inner.HTML des geklickten Buttons im Array an 0. Stelle stehen, 
+    //beim 2. Klick an 1. Stelle usw.
     if (clickCounter == 1 && this.innerHTML == sentences[randomSentenceSelector].words[0]) {
         //Sichtbarkeit des Feldes mit den ausgewählten Wörtern
         box.setAttribute("style", "opacity:1"); 
@@ -252,9 +266,9 @@ function wordClicker(): void {
         points++;
         pointViewer.innerHTML = "Punkte: " + points;
     }
-    //bei Fehler, Alert, ClickCounter runter, Punkte rundet und falls Punkte null sind bleiben sie null
+    //bei einem Fehler, Alert, ClickCounter runter, Punktabzug und falls Punkte null sind bleiben sie null
     else {
-    alert("Leider nicht richtig, versuch es nochmal!")
+    alert("Leider nicht richtig, versuch es nochmal!"); 
     clickCounter--; 
     points--;
     if (points <= 0) {
@@ -263,9 +277,9 @@ function wordClicker(): void {
     pointViewer.innerHTML = "Punkte: " + points;
     }
     
-    //wenn so oft richtig geklickt wurde wie das words array lang ist sind alle Worte richtig ausgewählt
+    //wenn so oft richtig geklickt wurde wie das "words"-array lang ist sind alle Worte richtig ausgewählt
     if (clickCounter == sentences[randomSentenceSelector].words.length) {
-        //Meldung mit Weiter button
+        //Meldung mit "Weiter"-button
         box2.innerHTML = "Gut gemacht!"; 
         let button: HTMLElement = document.createElement("button");
         button.setAttribute("type", "button");
@@ -280,9 +294,10 @@ function wordClicker(): void {
 //Aufbau der neuen Seite nach Schema oben 
 function goOn(): void {
     indexLevel--; 
+    //Satz generieren
     if (indexLevel > 0) {
     let minSentence: number = 0;
-    let maxSentence: number = (sentences.length -1);
+    let maxSentence: number = (sentences.length - 1);
     randomSentenceSelector = Math.floor(Math.random() * (maxSentence - minSentence + 1)) + minSentence;
 
     //neuer Satz auf deutsch
@@ -295,15 +310,19 @@ function goOn(): void {
     flexSpanish.innerHTML = ""; 
 
     //Entfernung des Weiter-Buttons und Leerung des Divs mit den Wörtern
-    let button: HTMLElement = document.getElementById("goonbutton")
+    let button: HTMLElement = document.getElementById("goonbutton");
     button.remove();
     let box: HTMLElement = document.getElementById("flexwords");
     box.innerHTML = ""; 
 
     //Click-Counter wieder auf 0
     clickCounter = 0; 
-    console.log(indexLevel); 
 
+    //Fortschrittsanzeige
+    barCounter++; 
+    barText.innerHTML = barCounter + " von " + barTotal; 
+    let barCalculator: number = ( barCounter / barTotal) * 100;
+    innerBar.setAttribute("style", "width:" + barCalculator + "%"); 
 
     //Erstellung der Wörter mit for-Schleife nach dem gleichen Schema wie oben
     var theArray = sentences[randomSentenceSelector].words.slice(); 
@@ -322,6 +341,7 @@ function goOn(): void {
         eventer.addEventListener("click", wordClicker); 
     }
 }
+    //indexLevel bei 0, also alle Sätze der Stufe erfolgreich gespielt
     else {
         //Seite clearen
         let pointsCorner: HTMLElement = document.getElementById("points");
@@ -334,16 +354,16 @@ function goOn(): void {
         flexSpanish.remove();
         flexWords.remove();
         taskText.remove();
-
+        //Erstellung der Texte auf dem Endscreen
         let textField: HTMLElement = document.createElement("div");
         textField.setAttribute("id", "finalText");
-        document.getElementById("content").appendChild(textField)
+        document.getElementById("content").appendChild(textField); 
 
         let headText1: HTMLElement = document.createElement("h2");
         headText1.setAttribute("id", "headText1");
         headText1.innerHTML = "Geschafft!"; 
         document.getElementById("finalText").appendChild(headText1); 
-
+        //Punkteanzeige
         let headText2: HTMLElement = document.createElement("h3");
         headText2.setAttribute("id", "headText2");
         headText2.innerHTML = "Du hast " + points + " Punkte erreicht"; 
@@ -353,7 +373,7 @@ function goOn(): void {
         headText3.setAttribute("id", "headText3");
         headText3.innerHTML = "Da geht noch was, oder?";
         document.getElementById("finalText").appendChild(headText3); 
-
+        //button zum Reload der Seite um von vorne zu starten
         let againButton: HTMLElement = document.createElement("button");
         againButton.setAttribute("type", "button");
         againButton.setAttribute("id", "againButton");
@@ -363,11 +383,7 @@ function goOn(): void {
 
     }
 }
-
+//Funktion zum Neuladen der Seite, alles auf Anfang
 function reload(): void {
     location.reload(); 
-}
-
-function cheat(): void {
-    indexLevel = 1; 
 }
